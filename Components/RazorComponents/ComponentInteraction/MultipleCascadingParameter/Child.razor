@@ -1,0 +1,15 @@
+﻿<div>
+    <h3>Child Component</h3>
+    <div>Value1 received at child: "@Data1"</div>
+    <div>Value2 received at child: "@ValueReceivedAtChild"</div>
+
+</div>
+
+@code {
+    [CascadingParameter]
+    public string Data1 { get; set; } = "ccccccccc";
+
+    [CascadingParameter(Name = "CascadeParam2")]
+    public string ValueReceivedAtChild { get; set; } = "ddddddddddddddd";
+
+}

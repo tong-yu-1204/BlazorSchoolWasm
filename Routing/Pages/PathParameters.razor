@@ -1,0 +1,47 @@
+﻿@page "/path-parameters/{Param1:bool}/{Param2:datetime}/{Param3:decimal}/{Param4:float}/{Param5:guid}/{Param6:int}/{Param7:long}/{Param8:double}/{Param9}"
+<h3>PathParameters</h3>
+<div>Param1 value: "@Param1", with type @Param1.GetType()</div>
+<div>Param2 value: "@Param2", with type @Param2.GetType()</div>
+<div>Param3 value: "@Param3", with type @Param3.GetType()</div>
+<div>Param4 value: "@Param4", with type @Param4.GetType()</div>
+<div>Param5 value: "@Param5", with type @Param5.GetType()</div>
+<div>Param6 value: "@Param6", with type @Param6.GetType()</div>
+<div>Param7 value: "@Param7", with type @Param7.GetType()</div>
+<div>Param8 value: "@Param8", with type @Param8.GetType()</div>
+<div>Param9 value: "@Param9", with type @Param9.GetType()</div>
+
+<hr />
+<footer>
+    <div><NavLink href="/">Back To Index</NavLink></div>
+</footer>
+
+@code {
+
+    [Parameter]
+    public bool Param1 { get; set; }
+
+    [Parameter]
+    public DateTime Param2 { get; set; }
+
+    [Parameter]
+    public decimal Param3 { get; set; }
+
+    [Parameter]
+    public float Param4 { get; set; }
+
+    [Parameter]
+    public Guid Param5 { get; set; }
+
+    [Parameter]
+    public int Param6 { get; set; }
+
+    [Parameter]
+    public long Param7 { get; set; }
+
+    [Parameter]
+    public double Param8 { get; set; }
+
+    [Parameter]
+    public string Param9 { get; set; } = string.Empty;
+
+}

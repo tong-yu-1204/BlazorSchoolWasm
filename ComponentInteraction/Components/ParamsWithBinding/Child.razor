@@ -1,0 +1,20 @@
+﻿<div>
+    <h3>Child</h3>
+    <p>Value received: "@Input"</p>
+    <button @onclick="UpdateValue">Update value</button>
+</div>
+
+@code {
+    [Parameter]
+    public string Input { get; set; } = string.Empty;
+
+
+    [Parameter]
+    public EventCallback<string> InputChanged { get; set; }
+
+    public void UpdateValue()
+    {
+        InputChanged.InvokeAsync("新新新22");
+    }
+
+}

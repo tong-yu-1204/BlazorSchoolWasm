@@ -1,0 +1,32 @@
+﻿@page "/detect-navigation"
+@inject NavigationManager navManager
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+<h3>DetectNavigation</h3>
+
+<div>
+    <div>Try to navigate away from this page</div>
+    <div><NavLink href="page-1">Page 1</NavLink></div>
+    <div><NavLink href="navigate-by-code">Nav by code</NavLink></div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        navManager.LocationChanged += OnLocationChanged;
+    }
+
+    public void OnLocationChanged(object? sender, LocationChangedEventArgs args)
+    {
+        JSRuntime.InvokeVoidAsync("alert", "要離開這裡了");
+        InvokeAsync(StateHasChanged);
+
+    }
+
+
+    public void Dispose()
+    {
+        navManager.LocationChanged -= OnLocationChanged;
+    }
+
+}

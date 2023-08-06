@@ -1,0 +1,13 @@
+﻿@page "/optional-path-parameter/{param1:int?}"
+<h3>OptionalPathParameters</h3>
+
+<div>Param1.HasValue: @Param1.HasValue</div>
+
+<div><NavLink href="/">Back to Index</NavLink></div>
+
+@code {
+    [Parameter]
+    public int? Param1 { get; set; }
+
+
+}

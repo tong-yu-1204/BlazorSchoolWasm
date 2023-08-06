@@ -1,0 +1,58 @@
+﻿@page "/query-parameters"
+<h3>QueryParameters</h3>
+
+<div>Param1 with value "@Param1" and type @Param1.GetType()</div>
+<div>Param2 with value "@Param2" and type @Param2.GetType()</div>
+<div>Param3 with value "@Param3" and type @Param3.GetType()</div>
+<div>Param4 with value "@Param4" and type @Param4.GetType()</div>
+<div>Param5 with value "@Param5" and type @Param5.GetType()</div>
+<div>Param6 with value "@Param6" and type @Param6.GetType()</div>
+<div>Param7 with value "@Param7" and type @Param7.GetType()</div>
+<div>Param8 with value "@Param8" and type @Param8.GetType()</div>
+<div>Param9 with value "@Param9" and type @Param9.GetType()</div>
+<hr />
+
+<footer>
+    <div><NavLink href="/">Back to Index</NavLink></div>
+</footer>
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public bool Param1 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public DateTime  Param2 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public decimal  Param3 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public float Param4 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public Guid Param5 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int Param6 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public long Param7 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public double Param8 { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string Param9 { get; set; } = "";
+
+
+
+}

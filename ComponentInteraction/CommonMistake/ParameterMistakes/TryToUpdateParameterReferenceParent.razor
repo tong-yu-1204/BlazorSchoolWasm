@@ -1,0 +1,14 @@
+﻿<div>
+    <h3>Parent</h3>
+    This parent component is passing "@MyInstance.Data" to its direct child
+    <button type="button" @onclick="StateHasChanged">Update state</button>
+    <TryToUpdateParameterReferenceChild ExampleInstance="MyInstance" />
+</div>
+
+@code {
+    public ExampleClass MyInstance { get; set; } = new()
+        {
+            Data = "Fresh Data"
+        };
+
+}

@@ -1,0 +1,14 @@
+﻿@page "/path-parameters-overloading/{param1}"
+
+<h3>Overloading path with param: @Param1</h3>
+
+
+<footer>
+    <div><NavLink href="/">Back to Index</NavLink></div>
+</footer>
+
+@code {
+    [Parameter]
+    public string Param1 { get; set; } = "";
+
+}

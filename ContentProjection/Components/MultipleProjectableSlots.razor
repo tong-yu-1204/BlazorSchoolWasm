@@ -1,0 +1,27 @@
+﻿<h3>MultipleProjectableSlots</h3>
+<h4>The content of the slot1</h4>
+<div>Slot1.Invoke => @Slot1?.Invoke("我是Slot1的Context")</div>
+<h4>The content of the slot2</h4>
+<div>@Slot2</div>
+<h4>The content of the slot3</h4>
+<div>@Slot3</div>
+<h4>The content of the slot4</h4>
+<div>Slot4.Invoke => @Slot4?.Invoke("我是Slot4的Context")</div>
+
+@code {
+    [Parameter]
+    public RenderFragment<string>? Slot1 { get; set; }
+
+    [Parameter]
+    public RenderFragment? Slot2 { get; set; }
+
+    [Parameter]
+    public RenderFragment? Slot3 { get; set; } = (__builder) =>
+    {
+        <div>Default slot value</div>
+    };
+
+    [Parameter]
+    public RenderFragment<string>? Slot4 { get; set; }
+
+}

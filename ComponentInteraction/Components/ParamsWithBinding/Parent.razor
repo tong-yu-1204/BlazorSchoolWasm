@@ -1,0 +1,11 @@
+﻿<div>
+    <h3>Parent</h3>
+    <p>This parent component is passing "@MyInput" to its child</p>
+    <Child @bind-Input="MyInput"/>
+
+</div>
+
+@code {
+    public string MyInput { get; set; } = "my input";
+
+}

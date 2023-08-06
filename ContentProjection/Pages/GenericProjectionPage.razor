@@ -1,0 +1,64 @@
+﻿@page "/generic-projection"
+@using ContentProjection.Components
+@using ContentProjection.Models
+
+<h3>GenericProjectionPage</h3>
+
+@foreach(var animal in Animals)
+{
+    <AnimalDetails Animal="animal"> sdfsdf</AnimalDetails>
+}
+
+<AnimalDetails Animal="Stray" Context="examinateDetails">
+    我們在灌木叢裡找到了一隻迷失的小貓。健康狀況: @examinateDetails
+</AnimalDetails>
+
+
+<hr />
+<hr />
+<h1>我自己的延伸</h1>
+<AnimalListDisplay AnimalList="Animals" Context="animal">
+    <DogTemplate>
+        <h1>DogName: @animal.DogName</h1>
+
+        <AnimalDetails Animal="animal" Context="info">
+            狗的資訊: @info
+
+        </AnimalDetails>
+
+    </DogTemplate>
+    <CatTemplate>
+        <h1>CatName: @animal.CatName</h1>
+        <AnimalDetails Animal="animal" Context="info">
+            貓的資訊: @info
+
+        </AnimalDetails>
+
+    </CatTemplate>
+    <BirdTemplate>
+        <h1>BirdName: @animal.BirdName</h1>
+        <AnimalDetails Animal="animal" Context="info">
+            鳥的資訊: @info
+        </AnimalDetails>
+
+    </BirdTemplate>
+    
+</AnimalListDisplay>
+
+<div><NavLink href="/">Back to Index</NavLink></div>
+
+@code {
+    public List<IAnimal> Animals { get; set; } = new()
+    {
+        new Dog {Name="Doggy", Age=2, DogName="DogName1"},
+        new Cat {Name="Cat", Age=3, CatName="CatName1"},
+        new Bird {Name="Bird", Age=4, BirdName="BirdName1"},
+    };
+
+    public Cat Stray { get; set; } = new()
+        {
+            Name = "Stray Cat",
+            Age = 1
+        };
+
+}

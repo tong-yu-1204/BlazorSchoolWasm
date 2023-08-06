@@ -1,0 +1,13 @@
+﻿<div>
+    <div>Inpect those 2 links to see the difference of the generated HTML tags</div>
+    <NavLink href="page-1" Match="NavLinkMatch.Prefix">Page 1 (No ActiveClass modification)</NavLink>
+    <NavLink href="page-1" Match="NavLinkMatch.Prefix" ActiveClass="btn btn-primary">Page 1 (With custom ActiveClass)</NavLink>
+</div>
+<div><NavLink href="page-1-1" Match="NavLinkMatch.All">Page 1.1</NavLink></div>
+<div><NavLink href="page-1-2" Match="NavLinkMatch.All">Page 1.2</NavLink></div>
+<div><NavLink href="page-2" Match="NavLinkMatch.All">Page 2</NavLink></div>
+<div>
+    <div>The HTML tags do not support highlighting when the page is activated. Inspect the generated HTML tag.</div>
+    <NavLink href="page-3">Page 3</NavLink>
+    <a href="page-3">Page 3 (HTML tag)</a>
+</div>

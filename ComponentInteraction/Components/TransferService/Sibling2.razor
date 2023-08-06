@@ -1,0 +1,56 @@
+﻿@using System.Collections.Specialized
+@using ComponentInteraction.Services
+@inject ExampleTransferService MyExampleTransferService
+@implements IDisposable
+<div>
+    <h3>Sibling2</h3>
+    <div>
+        <div>
+            <div>Received Data: "@MyExampleTransferService.Data"</div>
+            <label><input type="text" @bind="MyExampleTransferService.Data" @bind:event="oninput" /></label>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div>Number of instances: @MyExampleTransferService.ExampleInstances.Count</div>
+            <button type="button" @onclick="AddInstance">Add Instance</button>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        MyExampleTransferService.DataChanged += OnDataClassChanged;
+        MyExampleTransferService.ExampleInstances.CollectionChanged += OnCollectionChanged;
+    }
+
+
+    public void AddInstance()
+    {
+        MyExampleTransferService.ExampleInstances.Add(new()
+            {
+                Data = "newww instance "
+            });
+    }
+
+    public void OnDataClassChanged(object? sender, string val)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+
+    public void Dispose()
+    {
+        MyExampleTransferService.DataChanged -= OnDataClassChanged;
+        MyExampleTransferService.ExampleInstances.CollectionChanged -= OnCollectionChanged;
+
+    }
+
+}

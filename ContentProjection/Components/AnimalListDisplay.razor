@@ -1,0 +1,34 @@
+﻿@using ContentProjection.Models
+@using ContentProjection.Components
+<h3>AnimalListDisplay</h3>
+
+@foreach (var animal in AnimalList)
+{
+    @if (animal is Dog)
+    {
+        @DogTemplate.Invoke(animal as Dog);
+    }
+    @if (animal is Cat)
+    {
+        @CatTemplate.Invoke(animal as Cat);
+    }
+    @if (animal is Bird)
+    {
+        @BirdTemplate.Invoke(animal as Bird);
+    }
+}
+
+@code {
+    [Parameter]
+    public List<IAnimal> AnimalList { get; set; } = new();
+
+    [Parameter]
+    public RenderFragment<Dog>? DogTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<Cat>? CatTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<Bird>? BirdTemplate { get; set; }
+
+}

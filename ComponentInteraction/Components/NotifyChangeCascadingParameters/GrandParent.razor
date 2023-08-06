@@ -1,0 +1,22 @@
+﻿<div>
+    <h3>GrandParent</h3>
+    The grand parent component is passing this value "@ExampleInstance.Data" to its descendant components
+    <CascadingValue Value="this">
+        <CascadingValue Value="ExampleInstance">
+            <Parent />
+        </CascadingValue>
+    </CascadingValue>
+
+</div>
+
+@code {
+    public ExampleClass ExampleInstance { get; set; } = new()
+    {
+        Data = "一開始的資料"
+    };
+
+    public void NotifyChange()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+}

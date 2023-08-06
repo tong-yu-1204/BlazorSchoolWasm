@@ -1,0 +1,23 @@
+﻿@page "/"
+
+<PageTitle>Blazor code sample - Routing</PageTitle>
+
+<h1>Welcome to Blazor School</h1>
+<p>Demonstrate routing in Blazor WebAssembly .NET 7. - Blazor School</p>
+
+<div><NavLink href="single-route">Single Route</NavLink></div>
+<div><NavLink href="multiple-route-1">Multiple route 1</NavLink></div>
+<div><NavLink href="multiple-route-2">Multiple route 2</NavLink></div>
+<div><NavLink href="multiple-route-3">Multiple route 3</NavLink></div>
+<div><NavLink href="optional-path-parameter/1">Optional path parameter (Has Value)</NavLink></div>
+<div><NavLink href="optional-path-parameter/">Optional path parameter (No Value with /)</NavLink></div>
+<div><NavLink href="optional-path-parameter">Optional path parameter (No Value)</NavLink></div>
+<div><NavLink href="/path-parameters/true/2022-12-31/99.99/-1,001.018/{CD2C1638-1638-72D5-1638-DEADBEEF1638}/-99/99/99.99/Blazor School">Path Parameters with types</NavLink></div>
+
+<div><NavLink href="/path-parameters-overloading/Blazor School">Path parameter overloading 1</NavLink></div>
+<div><NavLink href="/path-parameters-overloading/path-without-parameter">Path parameter overloading 2</NavLink></div>
+
+
+<div><NavLink href="/query-parameters?Param1=true&Param2=2022-12-31&Param3=99.99&Param4=-1,001.018&Param5={CD2C1638-1638-72D5-1638-DEADBEEF1638}&Param6=-99&Param7=99&Param8=99.99&Param9=Blazor School">Query Parameters</NavLink></div>
+<div><NavLink href="/mapping-query-parameters?parameterfromurl=Blazor schooooool">Mapping Query Parameters</NavLink></div>
+<div><NavLink href="/unsupported-parameter-type">Unsupported paramter type</NavLink></div>

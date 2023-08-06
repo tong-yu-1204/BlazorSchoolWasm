@@ -1,0 +1,14 @@
+﻿<div>
+    <h3>Parent</h3>
+    <p>This parent component is passing "@MyInstance.Data" to its child</p>
+    <Child ExampleInstance="MyInstance" ExampleInstanceChanged="StateHasChanged"/>
+
+</div>
+
+@code {
+    public ExampleClass MyInstance { get; set; } = new()
+        {
+            Data = "Data val in Parent"
+        };
+
+}

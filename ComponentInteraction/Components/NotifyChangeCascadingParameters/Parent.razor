@@ -1,0 +1,23 @@
+﻿<div>
+    <h3>Parent</h3>
+    <div>Value received at parent: "@ValueReceivedAtParent.Data"</div>
+    <button @onclick="ChangeValue">Change value</button>
+    <Child/>
+
+</div>
+
+@code {
+    [CascadingParameter]
+    public ExampleClass ValueReceivedAtParent { get; set; } = new();
+
+    [CascadingParameter]
+    public GrandParent? Ancestor { get; set; }
+
+    public void ChangeValue()
+    {
+        ValueReceivedAtParent.Data = "NNNEWWW資料(Parent)";
+
+        Ancestor?.NotifyChange();
+    }
+
+}

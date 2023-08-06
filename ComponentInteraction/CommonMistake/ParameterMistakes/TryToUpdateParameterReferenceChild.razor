@@ -1,0 +1,29 @@
+﻿<div>
+    <h3>TryToUpdateParameterReferenceChild</h3>
+    <div>Received input parameter: "@ExampleInstance.Data"</div>
+    <button @onclick="Correct">Correct</button>
+    <button @onclick="Mistake">Mistake</button>
+
+</div>
+
+@code {
+    [Parameter]
+    public ExampleClass ExampleInstance { get; set; } = new();
+
+
+    public void Correct()
+    {
+        ExampleInstance.Data = "New modified value";
+
+    }
+
+    public void Mistake()
+    {
+        ExampleInstance = new()
+            {
+                Data = "New Modified reference"
+            };
+
+    }
+
+}

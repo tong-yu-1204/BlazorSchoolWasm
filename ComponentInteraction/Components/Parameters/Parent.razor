@@ -1,0 +1,12 @@
+﻿<div>
+    <h3>Parent</h3>
+    This parent component is passing "@FirstValue" and "@SecondValue" to its child
+    <Child InputParameter="@FirstValue" RequiredInputParameter="@SecondValue" myCustomAttr myCustomAttr2="我的Blazor wasm" />
+
+</div>
+
+@code {
+    public string FirstValue { get; set; } = "First Val";
+    public string SecondValue { get; set; } = "Second Val";
+
+}

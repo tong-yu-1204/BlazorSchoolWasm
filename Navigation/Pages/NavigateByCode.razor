@@ -1,0 +1,32 @@
+﻿@page "/navigate-by-code"
+@inject NavigationManager navManager
+<PageTitle>Navigate By Code</PageTitle>
+<h3>NavigateByCode</h3>
+
+<form>
+    <label><input type="checkbox" @bind-value="ForceReload"/> Force Reload?</label>
+    <label><input type="checkbox" @bind-value="ReplaceHistoryEntry"/> Replace History Entry?</label>
+    <button type="button" @onclick="NavigateAlternative">Navigate to Home</button>
+</form>
+
+@code {
+
+    public bool ForceReload { get; set; }
+    public bool ReplaceHistoryEntry { get; set; }
+
+    public void Navigate()
+    {
+        navManager.NavigateTo("/", forceLoad: ForceReload, replace: ReplaceHistoryEntry);
+    }
+
+    public void NavigateAlternative()
+    {
+        var options = new NavigationOptions()
+        {
+            ForceLoad = ForceReload,
+            ReplaceHistoryEntry = ReplaceHistoryEntry
+        };
+        navManager.NavigateTo("/", options);
+    }
+
+}

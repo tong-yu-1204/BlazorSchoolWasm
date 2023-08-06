@@ -1,0 +1,13 @@
+﻿@page "/mapping-query-parameters"
+<h3>MappingQueryParameters</h3>
+<div>Query parameter in the component has value @ParameterInComponent</div>
+<footer>
+    <div><NavLink href="/">Back to Index</NavLink></div>
+</footer>
+
+@code {
+    [SupplyParameterFromQuery(Name = "parameterfromurl")]
+    [Parameter]
+    public string ParameterInComponent { get; set; } = "";
+
+}

@@ -1,0 +1,12 @@
+﻿<div>
+    <h3>Grand Parent Component</h3>
+    The grand parent component is passing "@Data" to its descendant components;
+    <CascadingValue Value="Data">
+        <Parent />
+
+    </CascadingValue>
+</div>
+@code {
+    public string Data { get; set; } = "Data from the grand parent component";
+
+}

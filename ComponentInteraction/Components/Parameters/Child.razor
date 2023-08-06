@@ -1,0 +1,29 @@
+﻿<div>
+    <h3>Child</h3>
+    <div>Received Input Parameter: "@InputParameter"</div>
+    <div>Received Required Input Parameter: "@RequiredInputParameter"</div>
+    <div>Received @AdditionalAttributes.Count attributes</div>
+    <ul>
+        @foreach (var item in AdditionalAttributes)
+        {
+            <li>@item.Key => @item.Value</li>
+        }
+
+    </ul>
+
+</div>
+
+@code {
+    [Parameter]
+    public string InputParameter { get; set; } = "Default value";
+
+    [EditorRequired]
+    [Parameter]
+    public string RequiredInputParameter { get; set; } = "";
+
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> AdditionalAttributes { get; set; } = new();
+
+
+}

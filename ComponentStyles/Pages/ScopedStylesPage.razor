@@ -1,0 +1,16 @@
+﻿@page "/scoped-styles"
+@using ComponentStyles.Components
+<p class="scoped">use of .scoped css class</p>
+
+<ScopedStyles />
+
+<style>
+    .scoped {
+        color: yellow;
+        /*The text will stay red because it is scoped*/
+    }
+</style>
+
+@code {
+
+}
