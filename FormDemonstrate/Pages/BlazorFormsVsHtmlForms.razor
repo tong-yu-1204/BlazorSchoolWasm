@@ -1,0 +1,38 @@
+﻿@page "/blazor-forms-vs-html-forms"
+@using FormDemonstrate.FormModels
+@using Microsoft.AspNetCore.Components.Forms
+<h3>BlazorFormsVsHtmlForms</h3>
+<p>HTML form value: @HtmlFormResult</p>
+@if (HtmlFormSubmitted)
+{
+    <p>Html Form Submitted!</p>
+}
+<form @onsubmit="_ => HtmlFormSubmitted = true">
+    <fieldset>
+        <legend>Html Form</legend>
+        <input type="text" @bind-value="HtmlFormResult" @bind-value:event="oninput" />
+        <input type="submit" value="Submit" />
+    </fieldset>
+</form>
+<hr />
+<p>Blazor Form Result: @BlazorFormModel.BlazorFormResult</p>
+@if (BlazorFormSubmitted)
+{
+    <p>Blazor Form Submitted!!</p>
+}
+<EditForm Model="BlazorFormModel" OnSubmit="_ => BlazorFormSubmitted = true">
+    <fieldset>
+        <legend>Blazor Formsss</legend>
+        <InputText @bind-Value="BlazorFormModel.BlazorFormResult" />
+        <input type="submit" value="Submit" />
+    </fieldset>
+
+</EditForm>
+
+@code {
+    public string HtmlFormResult { get; set; } = "";
+    public bool HtmlFormSubmitted { get; set; } = false;
+    public BlazorDemonstrateFormModel BlazorFormModel { get; set; } = new();
+    public bool BlazorFormSubmitted { get; set; } = false;
+
+}

@@ -1,3 +1,8 @@
+.with-border {
+    border: red solid 3px;
+    margin: 5px;
+    padding: 5px;
+}
 
 h1:focus {
     outline: none;

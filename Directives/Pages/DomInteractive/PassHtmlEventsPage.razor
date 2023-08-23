@@ -1,0 +1,15 @@
+﻿@page "/pass-html-events"
+<h3>PassHtmlEventsPage</h3>
+<h4>Hover the box below:</h4>
+<div class="my-border-box" @onmousemove="UpdateCoordinates">Hover me</div>
+<h2>Coordinates: @Coordinates</h2>
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public string Coordinates { get; set; } = "";
+    public void UpdateCoordinates(MouseEventArgs args)
+    {
+        Coordinates = $"X: {args.ClientX}, Y:{args.ClientY}";
+    }
+
+}

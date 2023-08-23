@@ -1,0 +1,24 @@
+﻿@page "/simple-blazor-forms"
+@using FormDemonstrate.FormModels
+@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+<h3>SimpleBlazorFormsPage</h3>
+<EditForm Model="FormModel" OnSubmit="HandleFormSubmitAsync">
+    <fieldset>
+        <InputText @bind-Value="FormModel.InputText"/>
+        <button>Submit</button>
+    </fieldset>
+</EditForm>
+
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public SimpleBlazorFormModel FormModel { get; set; } = new();
+
+    public async void HandleFormSubmitAsync(EditContext editContext)
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "Form Submitted");
+    }
+
+}

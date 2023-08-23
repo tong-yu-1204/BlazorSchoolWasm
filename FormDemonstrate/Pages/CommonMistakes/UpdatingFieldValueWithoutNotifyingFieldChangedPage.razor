@@ -1,0 +1,42 @@
+﻿@page "/updating-field-value-without-notifying-field-changed"
+@using FormDemonstrate.FormModels.CommonMistakes
+@using Microsoft.AspNetCore.Components.Forms
+<h3>UpdatingFieldValueWithoutNotifyingFieldChangedPage</h3>
+<EditForm EditContext="FormContext">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <label>
+        Input your text:
+        <InputText @bind-Value="FormModel.RequiredString"/>
+    </label>
+    <button type="button" @onclick="Mistake">Mistake</button>
+    <button type="button" @onclick="Correct">Correct</button>
+
+</EditForm>
+
+@code {
+    public EditContext FormContext { get; set; }
+    public UpdatingFieldValueWithoutNotifyingFieldChangedFormModel FormModel { get; set; } = new();
+
+    public ValidationMessageStore ValidationMessageStore { get; set; }
+
+
+    public UpdatingFieldValueWithoutNotifyingFieldChangedPage()
+    {
+        FormContext = new(FormModel);
+        ValidationMessageStore = new(FormContext);
+    }
+
+    public void Correct()
+    {
+        FormModel.RequiredString = "";
+        FormContext.NotifyFieldChanged(FormContext.Field(nameof(FormModel.RequiredString)));
+    }
+
+    public void Mistake()
+    {
+        FormModel.RequiredString = "";
+
+    }
+
+}

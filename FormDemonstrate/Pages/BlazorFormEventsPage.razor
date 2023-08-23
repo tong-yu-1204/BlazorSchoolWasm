@@ -1,0 +1,49 @@
+﻿@page "/blazor-form-events"
+@using FormDemonstrate.FormModels
+@using Microsoft.AspNetCore.Components.Forms
+<h3>BlazorFormEventsPage</h3>
+<EditForm Model="FormModel" OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset>
+        <legend>事件展示22</legend>
+        <InputText @bind-Value="FormModel.ExampleString" />
+        <button>送出</button>
+    </fieldset>
+</EditForm>
+
+<h2>Logs</h2>
+<ol>
+    @foreach (var item in Log)
+    {
+        <li>@item</li>
+    }
+</ol>
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public List<string> Log { get; set; } = new();
+
+    public BlazorFormEventsFormModel FormModel { get; set; } = new();
+
+
+    public void HandleValidSubmit()
+    {
+        Log.Add("ValidSubmit fired.");
+
+    }
+
+    public void HandleInvalidSubmit()
+    {
+        Log.Add("InvalidSubmit fired.");
+
+    }
+
+    public void HandleSubmit()
+    {
+        Log.Add("Submit fired.");
+
+    }
+
+}

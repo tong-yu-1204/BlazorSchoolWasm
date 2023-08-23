@@ -1,0 +1,26 @@
+﻿@page "/injecting-services"
+@using DependencyInjection.Services
+@using DependencyInjection.Services.ServiceWithInterface
+@inject IServiceInterface ServiceWithInterface
+@inject ServiceWithParameter ServiceWithParameter
+@inject DependentService DependentService
+@inject DependentServiceWithParameter DependentServiceWithParameter
+<h3>InjectingServices</h3>
+<div class="with-border">Service with Interface: @ServiceWithInterface.ExampleString</div>
+<p class="with-border">ServiceWithParameter: @ServiceWithParameter.ExampleString</p>
+<p class="with-border">DependentService: @DependentService.UpstreamService.ExampleString</p>
+<p class="with-border">DepentdentServiceWithParameter: 
+   <h2>
+    @DependentServiceWithParameter.UpstreamService.ExampleString
+   </h2>
+   <h2>
+       @DependentServiceWithParameter.ExampleString
+   </h2>
+    
+</p>
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+
+}

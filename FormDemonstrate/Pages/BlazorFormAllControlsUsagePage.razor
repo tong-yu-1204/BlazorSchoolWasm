@@ -1,0 +1,224 @@
+﻿@page "/all-controls-usage"
+@using FormDemonstrate.FormModels
+@using Microsoft.AspNetCore.Components.Forms
+<PageTitle>All controls usage</PageTitle>
+<h3>Blazor Form All Controls Usage Page</h3>
+
+<EditForm Model="FormModel">
+    <DataAnnotationsValidator />
+    <hr />
+    <div>
+        <h2>1 Single Checkbox:</h2>
+        <label>
+            Checkbox 1:
+            <InputCheckbox @bind-Value="FormModel.SingleCheckbox" />
+        </label>
+    </div>
+    <hr />
+    <div>
+        <h2>
+            2 Multiple Checkboxes:
+        </h2>
+        @foreach (var checkbox in FormModel.CheckedCheckboxArray)
+        {
+
+            <div>
+                <label>
+                    @checkbox.Option
+                    <InputCheckbox @bind-Value="checkbox.Checked" />
+                </label>
+            </div>
+
+        }
+    </div>
+    <hr />
+    <div>
+        <h2>
+            3 Radio Group:
+        </h2>
+        <h3>
+            Selected Radio: "@FormModel.SelectedRadio"
+        </h3>
+        <label>
+            Radio Group:
+            <InputRadioGroup @bind-Value="FormModel.SelectedRadio">
+                <label>Radio 1<InputRadio Value="@("Radio 1")" /></label>
+                <label>Radio 2<InputRadio Value="@("Radio 2")" /></label>
+                <label>Radio 34<InputRadio Value="@("Radio 34")" /></label>
+
+            </InputRadioGroup>
+        </label>
+    </div>
+    <div>
+        <h2>4 Date Selector</h2>
+        <h3>Selected Date: "@FormModel.DateTime"</h3>
+        <label>
+            Date Selector:<br />
+            <InputDate Type="InputDateType.Date" @bind-Value="FormModel.DateTime" />
+        </label>
+    </div>
+    <div>
+        <h2>5 Date Offset Selector</h2>
+        <h3>Selected Date Offset: "@FormModel.DateTimeOffset"</h3>
+        <label>
+            Date Offset Selector:<br />
+            <InputDate Type="InputDateType.Time" @bind-Value="FormModel.DateTimeOffset" />
+        </label>
+    </div>
+    <div>
+        <h2>6 Input Single File</h2>
+        <label>
+            Input Single File:
+            <InputFile OnChange="UpdateFile" />
+        </label>
+    </div>
+    <div>
+        <h2>7 Input Multiple File</h2>
+        <label>
+            Input Multiple Files:
+            <InputFile OnChange="UpdateFiles" multiple />
+        </label>
+    </div>
+
+    <div>
+        <h2>8 Input Number</h2>
+        <label>
+            Input Number:
+            <InputNumber @bind-Value="FormModel.Number" />
+        </label>
+    </div>
+
+    <div>
+        <h2>9 Input Select Single</h2>
+        <label>
+            Input Select Single:
+            <InputSelect @bind-Value="FormModel.SingleOption">
+                @foreach (string option in OptionList)
+                {
+                    @if (FormModel.SingleOption == option)
+                    {
+                        <option value="@option" selected>@option</option>
+
+                    }
+                    else
+                    {
+                        <option value="@option">@option</option>
+
+                    }
+
+                }
+
+            </InputSelect>
+        </label>
+    </div>
+
+    <div>
+        <h2>10 Input Select Multiple</h2>
+
+        <label>
+            Input Select Multiple (hold ctrl to select multiple items): <br />
+            <InputSelect @bind-Value="FormModel.MultipleOptions">
+                @foreach (string option in OptionList)
+                {
+                    @if (FormModel.MultipleOptions is not null && FormModel.MultipleOptions.Any() && FormModel.MultipleOptions.Contains(option))
+                    {
+                        <option value="@option" selected>@option</option>
+
+                    }
+                    else
+                    {
+                        <option value="@option">@option</option>
+
+                    }
+
+                }
+            </InputSelect>
+
+
+        </label>
+    </div>
+
+    <div>
+        <h2>11 Input Simple Text:</h2>
+        <label>
+            Input Simple Text:<br />
+            <InputText @bind-Value="FormModel.SimpleText" />
+        </label>
+    </div>
+
+    <div>
+        <h2>12 Input Text Area</h2>
+        <label>
+            Input Long Text:<br />
+            <InputTextArea @bind-Value="FormModel.LongText" />
+        </label>
+    </div>
+
+    <div class="answer-display">
+        <h2>
+            Form Model Values
+        </h2>
+
+        <hr/>
+
+
+        <div>Single Checkbox: @FormModel.SingleCheckbox</div>
+        <div>MultipleCheckbox(checked): @string.Join(", ", FormModel.CheckedCheckboxArray.Where(c => c.Checked).Select(c => c.Option))</div>
+        <div>DateTime: @FormModel.DateTime </div>
+        <div>DateTimeOffset: @FormModel.DateTimeOffset</div>
+        <div>Selected Radio: @FormModel.SelectedRadio</div>
+        <div>Selected File: @(FormModel.SelectedFile?.Name ?? "沒有選擇檔案")</div>
+        <div>List of Selected Files: @string.Join(", ", FormModel.SelectedFiles?.Select(f => f.Name) ?? new List<string>())</div>
+        <div>Number: @FormModel.Number</div>
+        <div>Single Option: @FormModel.SingleOption</div>
+        <div>Multiple Options: @string.Join(", ", FormModel.MultipleOptions ?? Array.Empty<string>() )</div>
+        <div>Simple Text : @FormModel.SimpleText</div>
+        <div>Long Text: @FormModel.LongText</div>
+
+    </div>
+
+
+</EditForm>
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+@code {
+    public List<CheckboxModel> CheckboxValueList { get; set; } = new()
+    {
+        new (){ Option="First Checkbox", Checked=true},
+        new (){ Option="Second Checkbox", Checked=false},
+        new (){ Option="Third Checkbox", Checked=true}
+    };
+
+    public List<string> OptionList { get; set; } = new()
+    {
+        "Option 1",
+        "Option 2",
+        "Option 3"
+    };
+
+    public AllBlazorFormControlsFormModel FormModel { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        // Set which checkboxes are checked by default
+        FormModel.CheckedCheckboxArray = CheckboxValueList.ToArray();
+        // Set the default value for the single option
+        FormModel.SingleOption = "Option 3";
+        FormModel.SelectedRadio = "Radio 3";
+    }
+
+
+    public void UpdateFile(InputFileChangeEventArgs eventArgs)
+    {
+        FormModel.SelectedFile = eventArgs.File;
+    }
+
+    public void UpdateFiles(InputFileChangeEventArgs eventArgs)
+    {
+        FormModel.SelectedFiles = eventArgs.GetMultipleFiles(eventArgs.FileCount);
+
+    }
+
+
+
+}

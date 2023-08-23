@@ -19,7 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentStyles", "Componen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentProjection", "ContentProjection\ContentProjection.csproj", "{A664F61B-C8D6-452A-9F87-1D1F78D5ED72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavascriptInteraction", "JavascriptInteraction\JavascriptInteraction.csproj", "{8BE713FC-E674-4601-9BBE-2BD39EE5E65B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavascriptInteraction", "JavascriptInteraction\JavascriptInteraction.csproj", "{8BE713FC-E674-4601-9BBE-2BD39EE5E65B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{BA940743-F6A4-4098-9305-901FDF9858AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Directives", "Directives\Directives.csproj", "{B0E021FB-20C8-4982-A737-20405E536147}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormDemonstrate", "FormDemonstrate\FormDemonstrate.csproj", "{00D4E2FE-29C0-43DF-84EB-B2507537250C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,18 @@ Global
 		{8BE713FC-E674-4601-9BBE-2BD39EE5E65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BE713FC-E674-4601-9BBE-2BD39EE5E65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BE713FC-E674-4601-9BBE-2BD39EE5E65B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA940743-F6A4-4098-9305-901FDF9858AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA940743-F6A4-4098-9305-901FDF9858AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA940743-F6A4-4098-9305-901FDF9858AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA940743-F6A4-4098-9305-901FDF9858AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E021FB-20C8-4982-A737-20405E536147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E021FB-20C8-4982-A737-20405E536147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E021FB-20C8-4982-A737-20405E536147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E021FB-20C8-4982-A737-20405E536147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D4E2FE-29C0-43DF-84EB-B2507537250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D4E2FE-29C0-43DF-84EB-B2507537250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D4E2FE-29C0-43DF-84EB-B2507537250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D4E2FE-29C0-43DF-84EB-B2507537250C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
