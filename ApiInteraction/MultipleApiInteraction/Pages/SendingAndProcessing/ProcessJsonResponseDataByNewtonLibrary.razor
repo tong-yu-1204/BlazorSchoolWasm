@@ -1,0 +1,30 @@
+﻿@page "/process-json-response-data-by-newtonsoft-library"
+@using Shared.Data.Models
+@using Newtonsoft.Json
+@inject IHttpClientFactory HttpClientFactory
+<h3>ProcessJsonResponseDataByNewtonLibrary</h3>
+<h2>Data received: @ExampleInstance.ExampleString</h2>
+<hr />
+<button type="button" @onclick="ProcessDataAsync">送出</button>
+
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public ExampleClass ExampleInstance { get; set; } = new();
+
+    public async void ProcessDataAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("Second Api");
+        var response = await httpClient.GetAsync("example/ReturnComplexData");
+        if(response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            ExampleInstance = JsonConvert.DeserializeObject<ExampleClass>(responseContent) ?? new();
+        }
+
+        await InvokeAsync(StateHasChanged);
+
+    }
+
+}

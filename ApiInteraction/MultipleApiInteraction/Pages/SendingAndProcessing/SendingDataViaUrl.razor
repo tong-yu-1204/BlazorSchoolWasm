@@ -1,0 +1,27 @@
+﻿@page "/sending-data-via-url"
+@inject IHttpClientFactory HttpClientFactory
+<h3>SendingDataViaUrl</h3>
+<h2>@Status</h2>
+
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public string Status { get; set; } = "Sending...";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("Second Api");
+        var message = await httpClient.GetAsync("example/ProcessPrimitiveUrlData?url=Blazor SCCCCCCHHHHOOOLLL");
+        if(message is not null && message.IsSuccessStatusCode)
+        {
+            Status = "Success";
+        } else
+        {
+            Status = "Falied";
+        }
+    }
+
+
+}

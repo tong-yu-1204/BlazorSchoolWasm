@@ -1,0 +1,17 @@
+﻿@page "/derived-class"
+@using NickLovesToCode.Components.RazorComponents
+@using Shared.Data.Models
+@using SharedLib.Utilities
+@inject CustomHttpClient CustomHttpClient
+<h3>DerivedClass</h3>
+<WeatherForecastDisplay WeatherData="WeatherData"></WeatherForecastDisplay>
+
+@code {
+    public List<WeatherForecast> WeatherData { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        WeatherData = await CustomHttpClient.GetFromJsonAsync<List<WeatherForecast>>("weatherforecast") ?? new();
+    }
+
+}

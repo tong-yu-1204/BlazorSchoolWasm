@@ -1,0 +1,34 @@
+﻿@page "/process-stream-data"
+@inject IHttpClientFactory HttpClientFactory
+<h3>ProcessStreamResponseData</h3>
+<img src="@ImageSrc" />
+<hr />
+<button type="button" @onclick="LoadPngAsync">Load PNG</button>
+
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public string ImageSrc { get; set; } = "";
+
+
+    public async void LoadPngAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("Second Api");
+        var response = await httpClient.GetAsync("example/ReturnStreamData");
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var stream = await response.Content.ReadAsStreamAsync();
+            byte[] buffer = new byte[stream.Length];
+            await stream.ReadAsync(buffer, 0, (int)stream.Length);
+            string base64 = Convert.ToBase64String(buffer);
+            ImageSrc = $"data:image/png;base64,{base64}";
+        }
+
+
+        StateHasChanged();
+
+    }
+
+}

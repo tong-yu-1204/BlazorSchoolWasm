@@ -1,0 +1,21 @@
+﻿@page "/http-client-with-middlewares"
+@using Shared.Data.Models
+@using NickLovesToCode.Components.RazorComponents
+@inject IHttpClientFactory HttpClientFactory
+<h3>HttpClientWithMiddlewaresPage</h3>
+<BookListDisplay Books="Books"/>
+<hr />
+<button type="button" @onclick="LoadBooksAsync">讀取書本們</button>
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public List<BookDetails> Books { get; set; } = new();
+
+
+    public async Task LoadBooksAsync()
+    {
+        var httpClientWithMiddlewares = HttpClientFactory.CreateClient("HttpClientWithMiddlewares");
+        Books = await httpClientWithMiddlewares.GetFromJsonAsync<List<BookDetails>>("book") ?? new();
+    }
+
+}

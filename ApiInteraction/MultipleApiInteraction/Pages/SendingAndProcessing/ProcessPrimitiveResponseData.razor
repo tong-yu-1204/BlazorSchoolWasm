@@ -1,0 +1,27 @@
+﻿@page "/process-primitive-response-data"
+@inject IHttpClientFactory HttpClientFactory
+<h3>ProcessPrimitiveResponseData</h3>
+<h2>Data Received: @DataReceived</h2>
+
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public string DataReceived { get; set; } = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("Second Api");
+        var message = await httpClient.GetAsync("example/ReturnPrimitiveData");
+
+        if(message.IsSuccessStatusCode)
+        {
+            DataReceived = await message.Content.ReadAsStringAsync();
+
+        } else
+        {
+            DataReceived = "無法取得";
+        }
+    }
+
+}

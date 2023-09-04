@@ -1,0 +1,24 @@
+﻿@page "/named-http-client"
+@using NickLovesToCode.Components.RazorComponents
+@using Shared.Data.Models
+@inject IHttpClientFactory HttpClientFactory
+<h3>NamedHttpClient</h3>
+<WeatherForecastDisplay WeatherData="WeatherData"/>
+<hr />
+<button type="button" @onclick="LoadForecastAsync">讀取天氣預報</button>
+
+
+@code {
+    public List<WeatherForecast> WeatherData { get; set; } = new();
+
+
+    public async Task LoadForecastAsync()
+    {
+        var firstApiHttpClient = HttpClientFactory.CreateClient("First Api");
+        WeatherData = await firstApiHttpClient.GetFromJsonAsync<List<WeatherForecast>>("weatherforecast") ?? new();
+
+        // StateHasChanged();
+
+    }
+
+}

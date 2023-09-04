@@ -1,0 +1,26 @@
+﻿@page "/interfere-with-http-client-extensions"
+@using NickLovesToCode.Components.RazorComponents
+@using Shared.Data.Models
+@using SharedLib.Utilities
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime jsRuntime
+<h3>InterfereWithHttpClientExtensions</h3>
+<WeatherForecastDisplay WeatherData="WeatherData"></WeatherForecastDisplay>
+<hr />
+<button type="button" @onclick="LoadWeatherForecastAsync">讀取天氣</button>
+<h1><NavLink href="/">Back to Index</NavLink></h1>
+
+@code {
+    public List<WeatherForecast> WeatherData { get; set; } = new();
+
+
+    public async Task LoadWeatherForecastAsync()
+    {
+        var httpClient = HttpClientFactory.CreateClient("InterfereWithHttpClientExtensions");
+        WeatherData = await httpClient.GetResponseWithInterfering<List<WeatherForecast>>("weatherforecast", jsRuntime) ?? new();
+
+    }
+
+
+
+}
