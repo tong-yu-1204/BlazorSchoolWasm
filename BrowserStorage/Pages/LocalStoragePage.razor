@@ -1,0 +1,54 @@
+﻿@page "/local-storage"
+@using BrowserStorage.Utilities
+@inject LocalStorageAccessor LocalStorageAccessor
+<h3>LocalStoragePage</h3>
+<form>
+    <label>
+        Key:
+        <input type="text" @bind-value="Key" />
+
+    </label>
+    <label>
+        Value:
+        <input type="text" @bind-value="Value" />
+    </label>
+    <button type="button" @onclick="SetValueAsync">Set value</button>
+</form>
+<h2>StoredValue: @StoredValue</h2>
+<button type="button" @onclick="GetValueAsync">Get value</button>
+<button type="button" @onclick="RemoveValueAsync">Remove value</button>
+<button type="button" @onclick="ClearAllAsync">Clear all</button>
+
+<hr />
+<h2><NavLink href="/">Back to Index</NavLink></h2>
+
+
+@code {
+    public string Key { get; set; } = "";
+    public string Value { get; set; } = "";
+    public string StoredValue { get; set; } = "";
+
+    public async Task SetValueAsync()
+    {
+        await LocalStorageAccessor.SetValueAsync(Key, Value);
+    }
+
+    public async Task GetValueAsync()
+    {
+            StoredValue=  await LocalStorageAccessor.GetValueAsync<string>(Key);
+
+    }
+
+    public async Task RemoveValueAsync()
+    {
+        await LocalStorageAccessor.RemoveValueAsync(Key);
+
+    }
+
+    public async Task ClearAllAsync()
+    {
+        await LocalStorageAccessor.ClearAllAsync();
+
+    }
+
+}

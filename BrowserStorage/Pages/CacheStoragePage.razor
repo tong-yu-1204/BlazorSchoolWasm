@@ -1,0 +1,42 @@
+﻿@page "/cache-storage"
+@using BrowserStorage.Utilities
+@inject CacheStorageAccessor CacheStorageAccessor
+@inject HttpClient HttpClient
+<h3>CacheStoragePage</h3>
+<div><button type="button" @onclick="SetValueAsync">Set</button></div>
+<h2>@StoredValue</h2>
+<div><button type="button" @onclick="GetValueAsync">Get</button></div>
+<div><button type="button" @onclick="RemoveValueAsync">Remove</button></div>
+<div><button type="button" @onclick="ClearAllAsync">Remove All</button></div>
+
+@code {
+    public string StoredValue { get; set; } = "";
+
+    public async Task SetValueAsync()
+    {
+        var request = CreateRequestMessage();
+        var response = await HttpClient.SendAsync(request);
+        await CacheStorageAccessor.StoreAsync(request, response);
+
+    }
+
+    public async Task GetValueAsync()
+    {
+        StoredValue = await CacheStorageAccessor.GetAsync(CreateRequestMessage());
+    }
+
+
+    public async Task RemoveValueAsync()
+    {
+        await CacheStorageAccessor.RemoveAsync(CreateRequestMessage());
+
+    }
+
+    public async Task ClearAllAsync()
+    {
+        await CacheStorageAccessor.RemoveAllAsync();
+    }
+
+    private HttpRequestMessage CreateRequestMessage() => new HttpRequestMessage(HttpMethod.Get, "/sample-data/books.json");
+
+}
